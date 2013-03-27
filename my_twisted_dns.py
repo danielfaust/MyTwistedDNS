@@ -37,14 +37,12 @@ log.startLogging(sys.stdout)
 
 #############################################################################
 
-shared = {}
-
 class CustomResolver(common.ResolverBase):
   implements(interfaces.IResolver)
   
   def __init__(self):
     common.ResolverBase.__init__(self)
-    self.shared   = shared
+    self.shared   = {}
     self.upstream = client.Resolver(servers=[("8.8.8.8", 53),])
   
   def query(self, *args):
